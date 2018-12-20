@@ -45,8 +45,9 @@ function init(){
 	reStart()
 }
 
+// it restarts all arrays, html elements and main variables to the inicial status (empty or zero)
 function reStart() {
-	clearInterval(myTimer);
+	clearInterval(myTimer); 
 	openedCards = [];
  	matchedCards = [];
  	seconds = 0;
@@ -58,7 +59,9 @@ function reStart() {
  	cardsContainer.innerHTML = "";
  	starsContainer.innerHTML = starsStr + starsStr + starsStr;
  	qModalContainer.classList.add("myhidden");
- 	
+
+// creates the deck 	
+  
   for (var i = 0; i < icons.length; i++) {
  		const card = document.createElement('li');
  		card.classList.add("card");
@@ -72,41 +75,44 @@ function reStart() {
 function click(card) {
 
  	card.addEventListener("click", function() {
-    
-	  firstCard = openedCards[0];
+    	
+	  	firstCard = openedCards[0];
  		secondCard = this;
 
  		if (openedCards.length === 1) {
  			card.classList.add("show", "open");
  			openedCards.push(this);
- 			
+ 			disable();
 
- 			if (firstCard.innerHTML === secondCard.innerHTML) {
+ 			if (firstCard.innerHTML === secondCard.innerHTML) { //check if the first and second cards matches
  				
  				firstCard.classList.add('match', 'disable');
  				secondCard.classList.add('match', 'disable');
  				openedCards = [];
  				matchedCards.push(firstCard, secondCard);
  				console.log("match");
+ 				disable(); //a function that add/remove the "pointer-events:none" property from the classes list of the html element
  				
  			} else {
  				
  				setTimeout(function() { 
-
-	 				firstCard.classList.remove("show", "open");
+ 					firstCard.classList.remove("show", "open");
 	 				secondCard.classList.remove("show", "open");
 	 				openedCards = [];
 	 				console.log("no match");
-
+	 				disable();
  				}, 500)
  			}
- 			addMove();
- 			rating();
- 			endGame();
+
+ 			addMove(); //add one move each two cards fliped
+ 			rating(); //check the score os stars
+ 			endGame(); //check array.length. Game Over??
+
 
  		} else {
  			card.classList.add("show", "open");
  			openedCards.push(secondCard);
+
  		}
  	});
 }
@@ -157,6 +163,10 @@ function endGame() {
 
 function reload() {
 	qRestart.addEventListener("click", reloadBtn)
+}
+
+function disable() {
+	cardsContainer.classList.toggle("disable");	
 }
 
 init();

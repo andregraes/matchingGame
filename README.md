@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [About](#about)
-* [TO DO](#TO DO)
+* [TODO](#TODO)
 * [License](#license)
 
 ### About

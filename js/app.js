@@ -1,7 +1,15 @@
 /*
  * Create a list that holds all of your cards
  */
-const icons = ["fa fa-diamond", "fa fa-paper-plane-o","fa fa-anchor","fa fa-bolt","fa fa-cube","fa fa-anchor","fa fa-leaf","fa fa-bicycle","fa fa-diamond","fa fa-bomb","fa fa-leaf","fa fa-bomb","fa fa-bolt","fa fa-bicycle","fa fa-paper-plane-o","fa fa-cube"];
+const icons = ["fa fa-diamond", 
+"fa fa-paper-plane-o",
+"fa fa-anchor",
+"fa fa-bolt",
+"fa fa-cube",
+"fa fa-leaf",
+"fa fa-bicycle",
+"fa fa-bomb",
+];
 
 // querySelectors area
 
@@ -13,7 +21,7 @@ var qModalContainer = document.querySelector(".container-mymodal");
 var qSpanTime = document.querySelector(".modal-span-time");
 var qSpanStars = document.querySelector(".modal-span-stars");
 var qPlayAgainBtn = document.querySelector(".playAgainBtn");
-var qRestart = document.querySelector(".restart")
+var qRestart = document.querySelector(".restart");
 
 // variables area
 
@@ -53,7 +61,7 @@ function reStart() {
  	seconds = 0;
  	moves = 0;
  	myTimer = setInterval(timer, 1000);
-  	shuffle(icons);
+  	cardsList = shuffle(icons.concat(icons));
 	qMoves.innerHTML = moves;
  	qTimer.innerHTML = seconds;
  	cardsContainer.innerHTML = "";
@@ -61,15 +69,15 @@ function reStart() {
  	qModalContainer.classList.add("myhidden");
 
 // creates the deck 	
-  
-  for (var i = 0; i < icons.length; i++) {
+    
+  	for (var i = 0; i < cardsList.length; i++) {
  		const card = document.createElement('li');
  		card.classList.add("card");
- 	card.innerHTML = '<i class="' + icons[i] + '"></i>';
- 	cardsContainer.appendChild(card);
+ 		card.innerHTML = '<i class="' + cardsList[i] + '"></i>';
+ 		cardsContainer.appendChild(card);
  	
- 	click(card);
-  }
+ 		click(card);
+  	}
 }
 
 function click(card) {
